@@ -4,5 +4,15 @@
   "compatibility_date": "2026-09-05",
   "assets": {
     "directory": "./"
-  }
+  },
+  "routes": [
+    {
+      "pattern": "recortai.com",
+      "custom_domain": true
+    },
+    {
+      "pattern": "www.recortai.com",
+      "custom_domain": true
+    }
+  ]
 }
