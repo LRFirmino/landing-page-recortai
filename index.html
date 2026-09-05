@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recortai - Infraestrutura de Growth para Creators</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- HTMX v1.9.10 -->
+    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+    <link rel="stylesheet" href="css/custom.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            black: '#0A0A0C',
+                            dark: '#121118',
+                            purple: '#5B21B6',
+                            magenta: '#EC4899',
+                            accent: '#8B5CF6'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-[#0A0A0C] text-neutral-200 antialiased selection:bg-pink-500 selection:text-white">
+
+    <!-- HEADER / NAVIGATION -->
+    <header class="sticky top-0 z-50 backdrop-blur-md bg-[#0A0A0C]/80 border-b border-neutral-800/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-purple-600 via-pink-500 to-amber-400 p-[2px] flex items-center justify-center shadow-lg shadow-purple-900/30">
+                    <div class="w-full h-full bg-[#0A0A0C] rounded-[10px] flex items-center justify-center">
+                        <span class="text-pink-500 font-extrabold text-xl tracking-tighter">R</span>
+                    </div>
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-extrabold text-xl tracking-tight text-white">RecortAI</span>
+                    
+                </div>
+            </div>
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-neutral-400">
+                <a href="#problema" class="hover:text-white transition">O Problema</a>
+                <a href="#visao" class="hover:text-white transition">Visão do Produto</a>
+                <a href="#modelos" class="hover:text-white transition">Automação</a>
+                <a href="#discovery-form-section" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-purple-600 to-pink-500 text-white font-semibold hover:opacity-90 transition shadow-md shadow-pink-500/20">Acesso Antecipado</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="relative pt-12 pb-20 md:pt-24 md:pb-32 overflow-hidden">
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-purple-600/15 blur-[140px] rounded-full pointer-events-none"></div>
+        <div class="absolute top-1/3 left-1/2 -translate-x-1/2 w-[400px] h-[200px] bg-pink-500/15 blur-[120px] rounded-full pointer-events-none"></div>
+
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 text-center relative z-10">
+            <div class="inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-neutral-900/90 border border-purple-500/30 text-purple-300 text-xs sm:text-sm font-medium mb-8">
+                <span class="w-2 h-2 rounded-full bg-pink-500 animate-pulse"></span>
+                <span>Beta privado para creators, equipes e agências selecionadas</span>
+            </div>
+
+            <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-white mb-6 leading-[1.1]">
+                Transforme cada vídeo em um <br class="hidden sm:inline">
+                <span class="gradient-text">sistema de distribuição.</span>
+            </h1>
+
+            <p class="text-lg sm:text-xl text-neutral-400 max-w-3xl mx-auto mb-10 font-normal leading-relaxed">
+                Do vídeo longo ao corte pronto, legendado e otimizado para gerar assinantes — sem perder horas em processos manuais ou perder o controle da sua marca.
+            </p>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#discovery-form-section" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-purple-600 via-pink-500 to-pink-600 text-white font-bold text-base hover:shadow-lg hover:shadow-pink-500/25 transition duration-300 text-center">
+                    Quero acesso antecipado
+                </a>
+                <a href="#discovery-form-section" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-neutral-900 hover:bg-neutral-800 text-neutral-300 border border-neutral-800 text-base font-semibold transition text-center">
+                    Quero ajudar a construir o produto
+                </a>
+            </div>
+
+            <!-- UI Preview Graphic -->
+            <div class="mt-16 relative max-w-4xl mx-auto p-2 rounded-2xl bg-gradient-to-b from-neutral-800/80 to-neutral-900/30 border border-neutral-800 backdrop-blur-xl shadow-2xl">
+                <div class="bg-[#0A0A0C] rounded-xl p-6 text-left border border-neutral-900 space-y-4">
+                    <div class="flex items-center justify-between border-b border-neutral-800/80 pb-4">
+                        <div class="flex items-center space-x-2">
+                            <span class="w-3 h-3 rounded-full bg-red-500/80 inline-block"></span>
+                            <span class="w-3 h-3 rounded-full bg-yellow-500/80 inline-block"></span>
+                            <span class="w-3 h-3 rounded-full bg-green-500/80 inline-block"></span>
+                            <span class="text-xs font-mono text-neutral-500 ml-2">Recortai-pipeline // automated-growth</span>
+                        </div>
+                        <span class="text-xs px-2.5 py-1 rounded bg-purple-950 text-purple-300 font-mono">Status: Em Validação</span>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs font-mono">
+                        <div class="p-4 rounded-lg bg-neutral-900/60 border border-neutral-800">
+                            <span class="text-neutral-500 block mb-1">Entrada</span>
+                            <span class="text-white font-bold block">1x Vídeo Longo (45min)</span>
+                        </div>
+                        <div class="p-4 rounded-lg bg-neutral-900/60 border border-purple-500/30">
+                            <span class="text-purple-400 block mb-1">Processamento IA</span>
+                            <span class="text-white font-bold block">12 Mídias Otimizadas</span>
+                            <span class="text-neutral-400 text-[10px]">Geração de Teasers & GIFs</span>
+                        </div>
+                        <div class="p-4 rounded-lg bg-neutral-900/60 border border-neutral-800">
+                            <span class="text-neutral-500 block mb-1">Distribuição</span>
+                            <span class="text-pink-400 font-bold block">Atribuição por Canal</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO O PROBLEMA -->
+    <section id="problema" class="py-20 bg-neutral-950 border-y border-neutral-800/60">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-pink-500 mb-3">O Gargalo Atual</h2>
+                <p class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+                    O desafio não é criar mais vídeos.<br>
+                    É transformar o que você já fez em receita.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="p-6 rounded-2xl bg-[#0A0A0C] border border-neutral-800 hover:border-purple-500/40 transition">
+                    <div class="w-10 h-10 rounded-lg bg-purple-950/60 border border-purple-800/40 flex items-center justify-center text-purple-400 font-bold mb-4">01</div>
+                    <h3 class="text-lg font-bold text-white mb-2">Edição Lenta</h3>
+                    <p class="text-sm text-neutral-400 leading-relaxed">
+                        Garimpar manualmente os melhores momentos em gravações longas consome horas de trabalho operacional repetitivo.
+                    </p>
+                </div>
+
+                <div class="p-6 rounded-2xl bg-[#0A0A0C] border border-neutral-800 hover:border-purple-500/40 transition">
+                    <div class="w-10 h-10 rounded-lg bg-purple-950/60 border border-purple-800/40 flex items-center justify-center text-purple-400 font-bold mb-4">02</div>
+                    <h3 class="text-lg font-bold text-white mb-2">Falta de Adaptação</h3>
+                    <p class="text-sm text-neutral-400 leading-relaxed">
+                        Cada plataforma (X, Reddit, Telegram, Instagram) exige formatos, regras, ritmos e copywriting totalmente diferentes.
+                    </p>
+                </div>
+
+                <div class="p-6 rounded-2xl bg-[#0A0A0C] border border-neutral-800 hover:border-purple-500/40 transition">
+                    <div class="w-10 h-10 rounded-lg bg-purple-950/60 border border-purple-800/40 flex items-center justify-center text-purple-400 font-bold mb-4">03</div>
+                    <h3 class="text-lg font-bold text-white mb-2">Caos Operacional</h3>
+                    <p class="text-sm text-neutral-400 leading-relaxed">
+                        Agendar dezenas de teasers, cortes e GIFs semanalmente gera gargalos com equipes, editores e prazos.
+                    </p>
+                </div>
+
+                <div class="p-6 rounded-2xl bg-[#0A0A0C] border border-neutral-800 hover:border-purple-500/40 transition">
+                    <div class="w-10 h-10 rounded-lg bg-purple-950/60 border border-purple-800/40 flex items-center justify-center text-purple-400 font-bold mb-4">04</div>
+                    <h3 class="text-lg font-bold text-white mb-2">Falta de Atribuição</h3>
+                    <p class="text-sm text-neutral-400 leading-relaxed">
+                        É quase impossível identificar exatamente qual vídeo ou postagem em qual canal converteu novos assinantes.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO A VISÃO DO PRODUTO -->
+    <section id="visao" class="py-20 relative">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-xs font-bold uppercase tracking-widest text-purple-400 mb-3 block">Em Desenvolvimento</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+                    Estamos construindo uma nova forma de distribuir conteúdo.
+                </h2>
+                <p class="text-neutral-400 mt-4 text-base">
+                    Um pipeline integrado de inteligência e automação projetado para creators e agências.
+                </p>
+            </div>
+
+            <!-- Workflow Visual -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="p-6 rounded-2xl bg-neutral-900/60 border border-neutral-800">
+                    <span class="text-xs font-mono text-pink-500 mb-2 block">PASSO 01</span>
+                    <h4 class="text-xl font-bold text-white mb-2">Análise & Seleção</h4>
+                    <p class="text-neutral-400 text-sm">Upload do vídeo longo. A IA identifica os momentos com maior potencial de retenção e conversão.</p>
+                </div>
+                <div class="p-6 rounded-2xl bg-neutral-900/60 border border-neutral-800">
+                    <span class="text-xs font-mono text-pink-500 mb-2 block">PASSO 02</span>
+                    <h4 class="text-xl font-bold text-white mb-2">Geração de Mídias</h4>
+                    <p class="text-neutral-400 text-sm">Criação automática de cortes, trailers, GIFs promocionais, legendas e textos otimizados para cada plataforma.</p>
+                </div>
+                <div class="p-6 rounded-2xl bg-neutral-900/60 border border-neutral-800">
+                    <span class="text-xs font-mono text-pink-500 mb-2 block">PASSO 03</span>
+                    <h4 class="text-xl font-bold text-white mb-2">Agendamento & Attribution</h4>
+                    <p class="text-neutral-400 text-sm">Distribuição organizada e inteligência de dados para saber exatamente o que gera vendas de assinaturas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO VOCÊ DECIDE QUANTO AUTOMATIZAR -->
+    <section id="modelos" class="py-20 bg-neutral-950 border-t border-neutral-800/60">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+                    Automação não precisa significar perda de controle.
+                </h2>
+                <p class="text-neutral-400 mt-4 text-base">
+                    Explore os diferentes modelos de interação com Inteligência Artificial que estamos testando.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Autopilot -->
+                <div class="p-8 rounded-3xl bg-[#0A0A0C] border border-neutral-800 hover:border-pink-500/50 transition relative group">
+                    <div class="text-xs font-bold uppercase tracking-wider text-pink-400 mb-2">Modelo 01</div>
+                    <h3 class="text-2xl font-bold text-white mb-4">Autopilot</h3>
+                    <p class="text-neutral-400 text-sm leading-relaxed mb-6">
+                        A IA faz o trabalho pesado de seleção, edição e redação. Você apenas revisa em lote e aprova com um clique.
+                    </p>
+                    <span class="text-xs text-neutral-500 font-mono">Foco: Eficiência Máxima</span>
+                </div>
+
+                <!-- Copilot -->
+                <div class="p-8 rounded-3xl bg-[#0A0A0C] border border-purple-500/50 shadow-lg shadow-purple-900/20 relative group">
+                    <div class="text-xs font-bold uppercase tracking-wider text-purple-400 mb-2">Modelo 02</div>
+                    <h3 class="text-2xl font-bold text-white mb-4">Copilot</h3>
+                    <p class="text-neutral-400 text-sm leading-relaxed mb-6">
+                        A IA analisa e sugere opções de cortes, títulos e hashtags. Você faz pequenos ajustes e decide a versão final.
+                    </p>
+                    <span class="text-xs text-purple-400 font-mono">Foco: Colaboração Ativa</span>
+                </div>
+
+                <!-- Control -->
+                <div class="p-8 rounded-3xl bg-[#0A0A0C] border border-neutral-800 hover:border-pink-500/50 transition relative group">
+                    <div class="text-xs font-bold uppercase tracking-wider text-pink-400 mb-2">Modelo 03</div>
+                    <h3 class="text-2xl font-bold text-white mb-4">Control</h3>
+                    <p class="text-neutral-400 text-sm leading-relaxed mb-6">
+                        Você seleciona manualmente as marcas de tempo e direciona a estratégia. A IA atua estritamente como aceleradora de renderização.
+                    </p>
+                    <span class="text-xs text-neutral-500 font-mono">Foco: Precisão Total</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- QUESTIONÁRIO DE PRODUCT DISCOVERY -->
+    <section id="discovery-form-section" class="py-24 relative bg-[#0A0A0C]">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6">
+            
+            <div class="text-center mb-10">
+                <span class="px-3 py-1 rounded-full bg-pink-950 text-pink-300 text-xs font-mono tracking-wider uppercase mb-3 inline-block border border-pink-800/40">Pesquisa de Product Discovery</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+                    Ajude a construir o produto ideal.
+                </h2>
+                <p class="text-neutral-400 text-sm mt-2">
+                    Responda em 2 minutos e garanta prioridade no acesso ao Beta restrito.
+                </p>
+            </div>
+
+            <!-- CARD DO FORMULÁRIO -->
+            <div class="p-6 sm:p-10 rounded-3xl bg-neutral-900/80 border border-neutral-800 shadow-2xl backdrop-blur-md">
+                
+                <!-- Barra de Progresso -->
+                <div class="mb-8">
+                    <div class="flex items-center justify-between text-xs font-mono text-neutral-400 mb-2">
+                        <span>ETAPA DA PESQUISA</span>
+                        <span id="step-counter">1 de 6</span>
+                    </div>
+                    <div class="w-full h-2 bg-neutral-800 rounded-full overflow-hidden">
+                        <div id="progress-bar" class="h-full bg-gradient-to-r from-purple-600 to-pink-500 transition-all duration-300 w-[16%]"></div>
+                    </div>
+                </div>
+
+                <!-- HTMX Form Container -->
+                <div id="survey-form-container">
+                    <form hx-post="https://forms-backend-6efe7.containers.snapdeploy.app/api/v1/survey" 
+                          hx-target="#survey-form-container" 
+                          hx-swap="innerHTML"
+                          id="discovery-form" class="space-y-6" novalidate>
+
+                        <!-- Banner de Erro de Validação -->
+                        <div id="form-error-banner" class="hidden p-4 rounded-2xl bg-red-950/80 border border-red-500/50 text-red-200 text-sm flex items-start space-x-3 mb-4 animate-shake" role="alert">
+                            <svg class="w-5 h-5 text-red-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <div id="form-error-message" class="flex-1 font-medium"></div>
+                        </div>
+
+                        <!-- BLOCO 1: PERFIL -->
+                        <div id="step-1" class="step-pane space-y-6">
+                            <h3 class="text-lg font-bold text-white border-b border-neutral-800 pb-3">Bloco 1 — Sobre Você</h3>
+                            
+                            <!-- Q1 -->
+                            <div id="q1-group">
+                                <label class="block text-sm font-medium text-neutral-300 mb-2">1. Como podemos chamar você? *</label>
+                                <input type="text" id="name-input" name="name" placeholder="Seu nome ou nome artístico" 
+                                       class="w-full px-4 py-3 rounded-xl bg-neutral-950 border border-neutral-800 text-white focus:outline-none focus:border-purple-500 transition">
+                            </div>
+
+                            <!-- Q2 -->
+                            <div id="q2-group">
+                                <label class="block text-sm font-medium text-neutral-300 mb-2">2. Qual descreve melhor seu perfil? *</label>
+                                <div id="profile-type-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-3 p-1 rounded-2xl transition">
+                                    <label class="radio-card p-3.5 rounded-xl border border-neutral-800 bg-neutral-950/60 hover:border-purple-500 flex items-center space-x-3 cursor-pointer text-sm transition">
+                                        <input type="radio" name="profile_type" value="Creator independente" class="accent-pink-500">
+                                        <span>Creator independente</span>
+                                    </label>
+                                    <label class="radio-card p-3.5 rounded-xl border border-neutral-800 bg-neutral-950/60 hover:border-purple-500 flex items-center space-x-3 cursor-pointer text-sm transition">
+                                        <input type="radio" name="profile_type" value="Creator com equipe" class="accent-pink-500">
+                                        <span>Creator com equipe</span>
+                                    </label>
+                                    <label class="radio-card p-3.5 rounded-xl border border-neutral-800 bg-neutral-950/60 hover:border-purple-500 flex items-center space-x-3 cursor-pointer text-sm transition">
+                                        <input type="radio" name="profile_type" value="Agência / Management" class="accent-pink-500">
+                                        <span>Agência / Management</span>
+                                    </label>
+                                    <label class="radio-card p-3.5 rounded-xl border border-neutral-800 bg-neutral-950/60 hover:border-purple-500 flex items-center space-x-3 cursor-pointer text-sm transition">
+                                        <input type="radio" name="profile_type" value="Manager" class="accent-pink-500">
+                                        <span>Manager</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Q3 (Condicional para Agências) -->
+                            <div id="agencia-fields" class="hidden animate-fade-in">
+                                <label class="block text-sm font-medium text-purple-300 mb-2">3. Quantos creators você ou sua equipe gerencia? *</label>
+                                <select id="creators-managed-select" name="creators_managed" class="w-full px-4 py-3 rounded-xl bg-neutral-950 border border-neutral-800 text-white focus:outline-none focus:border-purple-500 transition text-sm">
+                                    <option value="">Selecione uma opção...</option>
+                                    <option value="1">1</option>
+                                    <option value="2-5">2–5</option>
+                                    <option value="6-10">6–10</option>
+                                    <option value="11-25">11–25</option>
+                                    <option value="26-50">26–50</option>
+                                    <option value="50+">50+</option>
+                                </select>
+                            </div>
+
+                            <!-- Q4 -->
+                            <div id="q4-group">
+                                <label class="block text-sm font-medium text-neutral-300 mb-2">4. Quantos vídeos longos você produz aproximadamente por mês? *</label>
+                                <div id="monthly-videos-grid" class="grid grid-cols-3 sm:grid-cols-5 gap-2 text-center p-1 rounded-2xl transition">
+                                    <label class="radio-card p-3 rounded-xl border border-neutral-800 bg-neutral-950/60 hover:border-pink-500 cursor-pointer text-sm transition">
+                                        <input type="radio" name="monthly_videos" value="1-5" class="sr-only peer">
+                                        <span class="font-semibold block">1–5</span>
+                                    </label>
+                                    <label class="radio-card p-3 rounded-xl border border-neutral-800 bg-neutral-950/60 hover:border-pink-500 cursor-pointer text-sm transition">
+                                        <input type="radio" name="monthly_videos" value="6-15" class="sr-only peer">
+                                        <span class="font-semibold block">6–15</span>
+                                    </label>
+                                    <label class="radio-card p-3 rounded-xl border border-neutral-800 bg-neutral-950/60 hover:border-pink-500 cursor-pointer text-sm transition">
+                                        <input type="radio" name="monthly_videos" value="16-30" class="sr-only peer">
+                                        <span class="font-semibold block">16–30</span>
+                                    </label>
+                                    <label class="radio-card p-3 rounded-xl border border-neutral-800 bg-neutral-950/60 hover:border-pink-500 cursor-pointer text-sm transition">
+                                        <input type="radio" name="monthly_videos" value="31-50" class="sr-only peer">
+                                        <span class="font-semibold block">31–50</span>
+                                    </label>
+                                    <label class="radio-card p-3 rounded-xl border border-neutral-800 bg-neutral-950/60 hover:border-pink-500 cursor-pointer text-sm transition">
+                                        <input type="radio" name="monthly_videos" value="50+" class="sr-only peer">
+                                        <span class="font-semibold block">50+</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="pt-4 flex justify-end">
+                                <button type="button" onclick="nextStep()" class="px-6 py-3 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold text-sm transition">Próximo Passo →</button>
+                            </div>
+                        </div>
+
+                        <!-- BLOCO 2: WORKFLOW ATUAL -->
+                        <div id="step-2" class="step-pane hidden space-y-6">
+                            <h3 class="text-lg font-bold text-white border-b border-neutral-800 pb-3">Bloco 2 — Workflow Atual</h3>
+
+                            <!-- Q5 -->
+                            <div id="q5-group">
+                                <label class="block text-sm font-medium text-neutral-300 mb-2">5. Como você produz seus teasers e conteúdos promocionais hoje? (Múltipla escolha) *</label>
+                                <div id="workflow-tools-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm p-1 rounded-2xl transition">
+                                    <label class="checkbox-card p-3 rounded-xl border border-neutral-800 bg-neutral-950/60 flex items-center space-x-2 cursor-pointer hover:border-pink-500 transition">
+                                        <input type="checkbox" name="workflow_tools" value="Faço tudo sozinho" class="accent-pink-500">
+                                        <span>Faço tudo sozinho</span>
+                                    </label>
+                                    <label class="checkbox-card p-3 rounded-xl border border-neutral-800 bg-neutral-950/60 flex items-center space-x-2 cursor-pointer hover:border-pink-500 transition">
+                                        <input type="checkbox" name="workflow_tools" value="Editor contratado" class="accent-pink-500">
+                                        <span>Editor contratado</span>
+                                    </label>
+                                    <label class="checkbox-card p-3 rounded-xl border border-neutral-800 bg-neutral-950/60 flex items-center space-x-2 cursor-pointer hover:border-pink-500 transition">
+                                        <input type="checkbox" name="workflow_tools" value="Freelancer" class="accent-pink-500">
+                                        <span>Freelancer</span>
+                                    </label>
+                                    <label class="checkbox-card p-3 rounded-xl border border-neutral-800 bg-neutral-950/60 flex items-center space-x-2 cursor-pointer hover:border-pink-500 transition">
+                                        <input type="checkbox" name="workflow_tools" value="Ferramentas de IA" class="accent-pink-500">
+                                        <span>Ferramentas de IA</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Q6 -->
+                            <div>
+                                <label class="block text-sm font-medium text-neutral-300 mb-2">6. Quantas horas por semana são gastas preparando cortes e divulgações?</label>
+                                <select name="hours_spent" class="w-full px-4 py-3 rounded-xl bg-neutral-950 border border-neutral-800 text-white text-sm focus:outline-none focus:border-purple-500">
+                                    <option value="Menos de 2h">Menos de 2h</option>
+                                    <option value="2-5h">2–5h</option>
+                                    <option value="5-10h">5–10h</option>
+                                    <option value="10-20h">10–20h</option>
+                                    <option value="20-40h">20–40h</option>
+                                    <option value="40h+">40h+</option>
+                                </select>
+                            </div>
+
+                            <!-- Q8 -->
+                            <div>
+                                <label class="block text-sm font-medium text-neutral-300 mb-1">7. Qual é a parte MAIS frustrante desse processo atualmente?</label>
+                                <span class="text-xs text-neutral-500 block mb-2">Não precisa pensar muito. Queremos entender como funciona na vida real.</span>
+                                <textarea name="biggest_pain" rows="3" placeholder="Ex: Perder tempo achando o trecho bom, ter que mudar o texto pra cada rede..." 
+                                          class="w-full px-4 py-3 rounded-xl bg-neutral-950 border border-neutral-800 text-white text-sm focus:outline-none focus:border-purple-500"></textarea>
+                            </div>
+
+                            <div class="pt-4 flex justify-between">
+                                <button type="button" onclick="prevStep()" class="px-5 py-2.5 rounded-xl bg-neutral-800 text-neutral-300 font-semibold text-sm hover:bg-neutral-700 transition">← Voltar</button>
+                                <button type="button" onclick="nextStep()" class="px-6 py-3 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold text-sm transition">Próximo Passo →</button>
+                            </div>
+                        </div>
+
+                        <!-- BLOCO 3: AUTOMAÇÃO -->
+                        <div id="step-3" class="step-pane hidden space-y-6">
+                            <h3 class="text-lg font-bold text-white border-b border-neutral-800 pb-3">Bloco 3 — O que Automatizar</h3>
+
+                            <!-- Q9 -->
+                            <div>
+                                <label class="block text-sm font-medium text-neutral-300 mb-2">8. Se pudesse automatizar APENAS uma etapa hoje, qual escolheria?</label>
+                                <select name="desired_automation" class="w-full px-4 py-3 rounded-xl bg-neutral-950 border border-neutral-800 text-white text-sm focus:outline-none focus:border-purple-500">
+                                    <option value="Encontrar os melhores trechos dos vídeos">Encontrar os melhores trechos dos vídeos</option>
+                                    <option value="Gerar cortes e teasers">Gerar cortes e teasers</option>
+                                    <option value="Criar GIFs promocionais">Criar GIFs promocionais</option>
+                                    <option value="Escrever títulos e captions">Escrever títulos e captions</option>
+                                    <option value="Adaptar conteúdo para diferentes plataformas">Adaptar conteúdo para diferentes plataformas</option>
+                                    <option value="Agendar/Publicar automaticamente">Agendar/Publicar automaticamente</option>
+                                    <option value="Medir quais conteúdos geram assinantes">Medir quais conteúdos geram assinantes</option>
+                                </select>
+                            </div>
+
+                            <!-- Q10 -->
+                            <div id="q9-group">
+                                <label class="block text-sm font-medium text-neutral-300 mb-2">9. Após fazer upload do vídeo longo, o que gostaria que acontecesse? *</label>
+                                <div id="automation-model-grid" class="space-y-3 p-1 rounded-2xl transition">
+                                    <label class="radio-card p-4 rounded-xl border border-neutral-800 bg-neutral-950/60 block cursor-pointer hover:border-pink-500 transition">
+                                        <input type="radio" name="automation_model" value="Autopilot" class="accent-pink-500 mr-2">
+                                        <strong class="text-white text-sm">Autopilot:</strong>
+                                        <span class="text-xs text-neutral-400 block mt-1">A IA encontra trechos, cria cortes, escreve textos e deixa pronto.</span>
+                                    </label>
+                                    <label class="radio-card p-4 rounded-xl border border-neutral-800 bg-neutral-950/60 block cursor-pointer hover:border-pink-500 transition">
+                                        <input type="radio" name="automation_model" value="Review & Approve" class="accent-pink-500 mr-2">
+                                        <strong class="text-white text-sm">Review & Approve:</strong>
+                                        <span class="text-xs text-neutral-400 block mt-1">A IA faz o trabalho pesado e eu apenas reviso antes de publicar.</span>
+                                    </label>
+                                    <label class="radio-card p-4 rounded-xl border border-neutral-800 bg-neutral-950/60 block cursor-pointer hover:border-pink-500 transition">
+                                        <input type="radio" name="automation_model" value="AI Assistant" class="accent-pink-500 mr-2">
+                                        <strong class="text-white text-sm">AI Assistant:</strong>
+                                        <span class="text-xs text-neutral-400 block mt-1">A IA sugere opções, mas eu escolho o que usar.</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="pt-4 flex justify-between">
+                                <button type="button" onclick="prevStep()" class="px-5 py-2.5 rounded-xl bg-neutral-800 text-neutral-300 font-semibold text-sm hover:bg-neutral-700 transition">← Voltar</button>
+                                <button type="button" onclick="nextStep()" class="px-6 py-3 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold text-sm transition">Próximo Passo →</button>
+                            </div>
+                        </div>
+
+                        <!-- BLOCO 4: CONTROLE E CONFIANÇA -->
+                        <div id="step-4" class="step-pane hidden space-y-6">
+                            <h3 class="text-lg font-bold text-white border-b border-neutral-800 pb-3">Bloco 4 — Controle e Confiança</h3>
+
+                            <!-- Q11 -->
+                            <div>
+                                <label class="block text-sm font-medium text-neutral-300 mb-2">10. Quanto controle deseja ter sobre os cortes gerados?</label>
+                                <select name="control_level" class="w-full px-4 py-3 rounded-xl bg-neutral-950 border border-neutral-800 text-white text-sm focus:outline-none focus:border-purple-500">
+                                    <option value="A IA escolhe tudo e eu apenas aprovo">A IA escolhe tudo e eu apenas aprovo</option>
+                                    <option value="A IA escolhe e eu posso ajustar">A IA escolhe e eu posso ajustar</option>
+                                    <option value="A IA sugere e eu escolho">A IA sugere e eu escolho</option>
+                                    <option value="Quero selecionar manualmente os trechos">Quero selecionar manualmente os trechos</option>
+                                </select>
+                            </div>
+
+                            <!-- Q14 -->
+                            <div>
+                                <label class="block text-sm font-medium text-neutral-300 mb-2">11. Existe alguma parte que você NUNCA deixaria a IA controlar sozinha?</label>
+                                <input type="text" id="never-automate-input" name="never_automate" placeholder="Ex: Publicar sem eu ver antes, escrever a legenda..." 
+                                       class="w-full px-4 py-3 rounded-xl bg-neutral-950 border border-neutral-800 text-white text-sm focus:outline-none focus:border-purple-500">
+                            </div>
+
+                            <div class="pt-4 flex justify-between">
+                                <button type="button" onclick="prevStep()" class="px-5 py-2.5 rounded-xl bg-neutral-800 text-neutral-300 font-semibold text-sm hover:bg-neutral-700 transition">← Voltar</button>
+                                <button type="button" onclick="nextStep()" class="px-6 py-3 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold text-sm transition">Próximo Passo →</button>
+                            </div>
+                        </div>
+
+                        <!-- BLOCO 5: VALOR ECONÔMICO -->
+                        <div id="step-5" class="step-pane hidden space-y-6">
+                            <h3 class="text-lg font-bold text-white border-b border-neutral-800 pb-3">Bloco 5 — Investimento Atual</h3>
+
+                            <!-- Q15 -->
+                            <div id="q12-group">
+                                <label class="block text-sm font-medium text-neutral-300 mb-2">12. Você atualmente paga por alguma ferramenta ou editor para resolver isso? *</label>
+                                <div id="currently-paying-grid" class="flex space-x-4 p-1 rounded-2xl transition">
+                                    <label class="radio-card p-3 px-6 rounded-xl border border-neutral-800 bg-neutral-950/60 cursor-pointer flex items-center space-x-2 text-sm hover:border-pink-500 transition">
+                                        <input type="radio" name="currently_paying" value="Sim" class="accent-pink-500">
+                                        <span>Sim</span>
+                                    </label>
+                                    <label class="radio-card p-3 px-6 rounded-xl border border-neutral-800 bg-neutral-950/60 cursor-pointer flex items-center space-x-2 text-sm hover:border-pink-500 transition">
+                                        <input type="radio" name="currently_paying" value="Não" class="accent-pink-500">
+                                        <span>Não</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Q15.1 Condicional -->
+                            <div id="paying-fields" class="hidden space-y-4 animate-fade-in">
+                                <div>
+                                    <label class="block text-sm font-medium text-purple-300 mb-1">Aproximadamente quanto você gasta por mês com isso atualmente?</label>
+                                    <select id="current-spend-select" name="current_spend" class="w-full px-4 py-3 rounded-xl bg-neutral-950 border border-neutral-800 text-white text-sm focus:outline-none focus:border-purple-500">
+                                        <option value="Até R$100">Até R$100</option>
+                                        <option value="R$100–300">R$100–300</option>
+                                        <option value="R$300–500">R$300–500</option>
+                                        <option value="R$500–1.000">R$500–1.000</option>
+                                        <option value="R$1.000+">R$1.000+</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Q16 -->
+                            <div>
+                                <label class="block text-sm font-medium text-neutral-300 mb-2">13. Se uma plataforma resolvesse esse problema de forma confiável, quanto consideraria razoável pagar por mês?</label>
+                                <select name="willingness_to_pay" class="w-full px-4 py-3 rounded-xl bg-neutral-950 border border-neutral-800 text-white text-sm focus:outline-none focus:border-purple-500">
+                                    <option value="Até R$49">Até R$49</option>
+                                    <option value="R$50–99">R$50–99</option>
+                                    <option value="R$100–199">R$100–199</option>
+                                    <option value="R$200–399">R$200–399</option>
+                                    <option value="R$400–799">R$400–799</option>
+                                    <option value="R$800+">R$800+</option>
+                                    <option value="Não pagaria / Apenas grátis">Não pagaria / Apenas grátis</option>
+                                </select>
+                            </div>
+
+                            <div class="pt-4 flex justify-between">
+                                <button type="button" onclick="prevStep()" class="px-5 py-2.5 rounded-xl bg-neutral-800 text-neutral-300 font-semibold text-sm hover:bg-neutral-700 transition">← Voltar</button>
+                                <button type="button" onclick="nextStep()" class="px-6 py-3 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold text-sm transition">Próximo Passo →</button>
+                            </div>
+                        </div>
+
+                        <!-- BLOCO 6: EARLY ADOPTERS -->
+                        <div id="step-6" class="step-pane hidden space-y-6">
+                            <h3 class="text-lg font-bold text-white border-b border-neutral-800 pb-3">Bloco 6 — Beta & Contato</h3>
+
+                            <!-- Q17 -->
+                            <div>
+                                <label class="block text-sm font-medium text-neutral-300 mb-2">14. Gostaria de testar uma primeira versão antes do lançamento público?</label>
+                                <select id="wants-beta-select" name="wants_beta" class="w-full px-4 py-3 rounded-xl bg-neutral-950 border border-neutral-800 text-white text-sm focus:outline-none focus:border-purple-500 transition">
+                                    <option value="Sim, quero participar">Sim, quero participar</option>
+                                    <option value="Talvez">Talvez</option>
+                                    <option value="Não tenho interesse agora">Não tenho interesse agora</option>
+                                </select>
+                            </div>
+
+                            <!-- Q18 -->
+                            <div>
+                                <label class="block text-sm font-medium text-neutral-300 mb-2">15. Toparia conversar por 10–20 minutos com os fundadores para definir o produto?</label>
+                                <select id="wants-interview-select" name="wants_interview" class="w-full px-4 py-3 rounded-xl bg-neutral-950 border border-neutral-800 text-white text-sm focus:outline-none focus:border-purple-500 transition">
+                                    <option value="Sim">Sim</option>
+                                    <option value="Talvez">Talvez</option>
+                                    <option value="Não">Não</option>
+                                </select>
+                            </div>
+
+                            <div style="display: none;" aria-hidden="true">
+                                <label for="website">Recortai</label>
+                                <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+                            </div>
+
+                            <!-- CAMPO E-mail -->
+                            <div id="q16-group">
+                                <div class="flex items-center justify-between mb-2">
+                                    <label id="email-label" for="email-input" class="block text-sm font-medium text-neutral-300">
+                                        16. Seu e-mail <span id="email-required-badge" class="text-pink-400 font-semibold">*</span>
+                                    </label>
+                                    <span id="email-status-text" class="text-xs text-pink-400 font-medium">Obrigatório</span>
+                                </div>
+                                <input type="email" id="email-input" name="email" placeholder="seu.email@exemplo.com" 
+                                    class="w-full px-4 py-3 rounded-xl bg-neutral-950 border border-neutral-800 text-white text-sm focus:outline-none focus:border-purple-500 transition">
+                                <p id="email-helper" class="text-xs text-neutral-400 mt-1.5 transition">
+                                    Informe seu e-mail para receber o acesso antecipado ao Beta ou agendarmos a conversa.
+                                </p>
+                            </div>
+
+                            <div class="pt-6 flex justify-between items-center">
+                                <button type="button" onclick="prevStep()" class="px-5 py-2.5 rounded-xl bg-neutral-800 text-neutral-300 font-semibold text-sm hover:bg-neutral-700 transition">← Voltar</button>
+                                <button type="submit" id="submit-btn" class="px-8 py-4 rounded-xl bg-gradient-to-r from-purple-600 via-pink-500 to-pink-600 text-white font-extrabold text-base shadow-lg shadow-pink-500/25 hover:opacity-95 transition flex items-center justify-center space-x-2">
+                                    <span id="submit-btn-text">Enviar Respostas e Garantir Beta</span>
+                                </button>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="py-12 bg-neutral-950 border-t border-neutral-800/80 text-neutral-500 text-xs">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div>
+                <p>&copy; 2026 Recortai. Todos os direitos reservados.</p>
+                <p class="mt-1 text-neutral-600">Seus dados serão utilizados exclusivamente para fins relacionados à pesquisa e eventual participação no Beta, de acordo com a LGPD.</p>
+            </div>
+            <div class="flex space-x-6 text-neutral-400">
+                <a href="#" class="hover:text-white transition">Privacidade</a>
+                <a href="#" class="hover:text-white transition">Termos de Uso</a>
+                <a href="#" class="hover:text-white transition">Contato</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/survey.js"></script>
+</body>
+</html>

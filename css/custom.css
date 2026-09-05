@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: #0A0A0C;
+    color: #F3F4F6;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #0A0A0C;
+}
+::-webkit-scrollbar-thumb {
+    background: #1F2937;
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #374151;
+}
+
+/* Glow effects */
+.glow-purple {
+    box-shadow: 0 0 50px -10px rgba(124, 58, 237, 0.25);
+}
+
+.glow-magenta {
+    box-shadow: 0 0 50px -10px rgba(236, 72, 153, 0.25);
+}
+
+.gradient-text {
+    background: linear-gradient(135deg, #FFFFFF 0%, #E9D5FF 50%, #EC4899 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Step Form Animation */
+.step-pane {
+    transition: all 0.3s ease-in-out;
+}
+
+/* Interactive Card Checked States */
+.radio-card:has(input:checked),
+.checkbox-card:has(input:checked) {
+    border-color: #EC4899 !important;
+    background-color: rgba(236, 72, 153, 0.12) !important;
+    box-shadow: 0 0 15px -2px rgba(236, 72, 153, 0.25);
+}
+
+.radio-card:has(input:checked) span,
+.checkbox-card:has(input:checked) span,
+.radio-card:has(input:checked) strong {
+    color: #F472B6;
+}
+
+/* Form Validation Error State */
+.field-error {
+    border-color: #EF4444 !important;
+    box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.35) !important;
+}
+
+@keyframes error-shake {
+    0%, 100% { transform: translateX(0); }
+    20%, 60% { transform: translateX(-4px); }
+    40%, 80% { transform: translateX(4px); }
+}
+
+.animate-shake {
+    animation: error-shake 0.35s ease-in-out;
+}
